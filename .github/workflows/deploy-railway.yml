@@ -1,0 +1,41 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-railway
+  cancel-in-progress: false  # never cancel in-flight deploys
+
+jobs:
+  deploy:
+    name: Deploy API to Railway
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy
+        run: railway up --service api --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Notify on success
+        if: success()
+        run: echo "✅ SafeCircle API deployed to Railway"
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "❌ Railway deployment failed"

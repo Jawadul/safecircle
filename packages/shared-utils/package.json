@@ -1,0 +1,32 @@
+{
+  "name": "@safecircle/shared-utils",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "jest --passWithNoTests",
+    "test:ci": "jest --coverage --ci",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@safecircle/shared-types": "*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@safecircle/config": "*",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2",
+    "rimraf": "^6.0.1"
+  }
+}

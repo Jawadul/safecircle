@@ -1,0 +1,26 @@
+{
+  "extends": "@safecircle/config/tsconfig/react-native.json",
+  "compilerOptions": {
+    "paths": {
+      "@safecircle/shared-types": [
+        "../../packages/shared-types/src/index.ts"
+      ],
+      "@safecircle/shared-utils": [
+        "../../packages/shared-utils/src/index.ts"
+      ],
+      "@safecircle/ui": [
+        "../../packages/ui/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.d.ts",
+    "expo-env.d.ts",
+    ".expo/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
